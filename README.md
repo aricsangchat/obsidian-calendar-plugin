@@ -1,4 +1,29 @@
-# obsidian-calendar-plugin
+# Calendar — maintenance fork
+
+> **This is an unofficial maintenance fork** of
+> [liamcain/obsidian-calendar-plugin](https://github.com/liamcain/obsidian-calendar-plugin),
+> whose last commit was 2022-11-04. All original work and credit belong to
+> [Liam Cain](https://github.com/liamcain); the funding link still points to him.
+> This fork exists only to keep the plugin working against current Obsidian
+> versions. It is not endorsed by or affiliated with the original author, who
+> has been invited to take it over or have it taken down at any time.
+>
+> **It is not in the community plugin list.** Install it manually or via BRAT.
+> It keeps the plugin id `calendar`, so it is a drop-in replacement that
+> preserves your existing settings — do not run it alongside the original.
+>
+> See [CHANGELOG.md](CHANGELOG.md) for what changed, including
+> **what is deliberately not claimed to be fixed**.
+
+## Install
+
+Manually: download `main.js`, `manifest.json` and `styles.css` from the
+[latest release](https://github.com/aricsangchat/obsidian-calendar-plugin/releases/latest)
+into `<vault>/.obsidian/plugins/calendar/`, replacing the existing files, then
+reload Obsidian.
+
+---
+
 
 This plugin for [Obsidian](https://obsidian.md/) creates a simple Calendar view for visualizing and navigating between your daily notes.
 

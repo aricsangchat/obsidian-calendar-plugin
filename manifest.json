@@ -1,11 +1,11 @@
 {
   "id": "calendar",
-  "name": "Calendar",
+  "name": "Calendar (maintenance fork)",
   "description": "Calendar view of your daily notes",
-  "version": "1.5.10",
-  "author": "Liam Cain",
-  "authorUrl": "https://github.com/liamcain/",
+  "version": "1.6.0",
+  "author": "Liam Cain — maintenance fork by Aric Sangchat",
+  "authorUrl": "https://github.com/aricsangchat/obsidian-calendar-plugin",
   "fundingUrl": "https://www.buymeacoffee.com/liamcain",
   "isDesktopOnly": false,
-  "minAppVersion": "0.9.11"
+  "minAppVersion": "1.0.0"
 }
