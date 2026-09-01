@@ -60,26 +60,48 @@ export default class CalendarPlugin extends Plugin {
         if (checking) {
           return !appHasPeriodicNotesPluginLoaded();
         }
-        this.view.openOrCreateWeeklyNote(window.moment(), false);
+        this.withView((view) =>
+          view.openOrCreateWeeklyNote(window.moment(), false)
+        );
       },
     });
 
     this.addCommand({
       id: "reveal-active-note",
       name: "Reveal active note",
-      callback: () => this.view.revealActiveNote(),
+      callback: () => this.withView((view) => view.revealActiveNote()),
     });
 
     await this.loadOptions();
 
     this.addSettingTab(new CalendarSettingsTab(this.app, this));
 
-    if (this.app.workspace.layoutReady) {
+    // `layout-ready` was removed from the Workspace event map; registering for
+    // it silently never fired, so on a cold start (where layoutReady is still
+    // false during onload) the view was never constructed and every command
+    // that touches `this.view` threw. onLayoutReady is the supported API and
+    // fires immediately if the layout is already ready. See #417.
+    this.app.workspace.onLayoutReady(() => this.initLeaf());
+  }
+
+  /**
+   * Run `fn` against the calendar view, creating the leaf first if it isn't
+   * open yet.
+   *
+   * `this.view` is only assigned when the view factory runs, so any command
+   * that dereferenced it directly threw for users who had closed the calendar
+   * pane — or for everyone, on a cold start, before #417 was fixed. Recreating
+   * the leaf on demand makes the commands work from a cold palette.
+   */
+  private async withView(fn: (view: CalendarView) => unknown): Promise<void> {
+    if (!this.view) {
       this.initLeaf();
-    } else {
-      this.registerEvent(
-        this.app.workspace.on("layout-ready", this.initLeaf.bind(this))
+      await this.app.workspace.revealLeaf(
+        this.app.workspace.getLeavesOfType(VIEW_TYPE_CALENDAR)[0]
       );
+    }
+    if (this.view) {
+      fn(this.view);
     }
   }
 

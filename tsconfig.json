@@ -8,6 +8,19 @@
     "baseUrl": ".",
     "paths": {
       "src": ["src/*"]
-    }
+    },
+
+    /**
+     * The toolchain bump (TS 4.2 -> 5.x) was required because the 2021 compiler
+     * could no longer parse the current obsidian/codemirror .d.ts files, which
+     * made the build emit silently-broken output.
+     *
+     * @tsconfig/svelte v5 additionally turns on `strict` and
+     * `verbatimModuleSyntax`. Adopting those would mean rewriting code well
+     * beyond the bug being fixed, so they are pinned to the project's previous
+     * behaviour here. Tightening them is worth doing later, on its own.
+     */
+    "strict": false,
+    "verbatimModuleSyntax": false
   }
 }

@@ -18,11 +18,23 @@ const mockApp: App = {
       rmdir: () => Promise.resolve(),
       remove: () => Promise.resolve(),
       rename: () => Promise.resolve(),
+      // Added to DataAdapter since this mock was written.
+      stat: () => Promise.resolve(null),
+      append: () => Promise.resolve(),
+      appendBinary: () => Promise.resolve(),
+      process: () => Promise.resolve(""),
       copy: () => Promise.resolve(),
     },
     configDir: ".obsidian",
     getName: () => "",
     getAbstractFileByPath: () => null,
+    // Added to Vault since this mock was written.
+    getFileByPath: () => null,
+    getFolderByPath: () => null,
+    getAllFolders: () => [],
+    append: () => Promise.resolve(),
+    appendBinary: () => Promise.resolve(),
+    process: () => Promise.resolve(""),
     getRoot: () => ({
       children: [],
       isRoot: () => true,

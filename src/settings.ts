@@ -4,6 +4,8 @@ import type { ILocaleOverride, IWeekStartOption } from "obsidian-calendar-ui";
 
 import { DEFAULT_WEEK_FORMAT, DEFAULT_WORDS_PER_DOT } from "src/constants";
 
+import { getLocaleWeekStart } from "./localeWeekStart";
+
 import type CalendarPlugin from "./main";
 
 export interface ISettings {
@@ -125,8 +127,7 @@ export class CalendarSettingsTab extends PluginSettingTab {
     const { moment } = window;
 
     const localizedWeekdays = moment.weekdays();
-    const localeWeekStartNum = window._bundledLocaleWeekSpec.dow;
-    const localeWeekStart = moment.weekdays()[localeWeekStartNum];
+    const localeWeekStart = moment.weekdays()[getLocaleWeekStart()];
 
     new Setting(this.containerEl)
       .setName("Start week on:")
