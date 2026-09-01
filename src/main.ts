@@ -76,11 +76,11 @@ export default class CalendarPlugin extends Plugin {
 
     this.addSettingTab(new CalendarSettingsTab(this.app, this));
 
-    // `layout-ready` was removed from the Workspace event map; registering for
-    // it silently never fired, so on a cold start (where layoutReady is still
-    // false during onload) the view was never constructed and every command
-    // that touches `this.view` threw. onLayoutReady is the supported API and
-    // fires immediately if the layout is already ready. See #417.
+    // `layout-ready` is no longer in the public Workspace event map. It still
+    // fires at runtime on 1.13.7 (verified), so this is hardening rather than a
+    // bug fix — but it is undocumented and can be dropped without notice.
+    // onLayoutReady is the supported API and fires immediately when the layout
+    // is already ready, which covers both the cold- and warm-start paths.
     this.app.workspace.onLayoutReady(() => this.initLeaf());
   }
 
