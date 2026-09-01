@@ -1,26 +1,26 @@
-# Calendar — maintenance fork
+# Calendar Revived
 
-> **This is an unofficial maintenance fork** of
+> **An actively-maintained fork** of
 > [liamcain/obsidian-calendar-plugin](https://github.com/liamcain/obsidian-calendar-plugin),
 > whose last commit was 2022-11-04. All original work and credit belong to
-> [Liam Cain](https://github.com/liamcain); the funding link still points to him.
-> This fork exists only to keep the plugin working against current Obsidian
-> versions. It is not endorsed by or affiliated with the original author, who
-> has been invited to take it over or have it taken down at any time.
->
-> **It is not in the community plugin list.** Install it manually or via BRAT.
-> It keeps the plugin id `calendar`, so it is a drop-in replacement that
-> preserves your existing settings — do not run it alongside the original.
->
-> See [CHANGELOG.md](CHANGELOG.md) for what changed, including
-> **what is deliberately not claimed to be fixed**.
+> [Liam Cain](https://github.com/liamcain), the MIT licence and funding link are
+> preserved, and he has been
+> [invited](https://github.com/liamcain/obsidian-calendar-plugin/issues/418) to
+> take this over or have it taken down at any time. Not endorsed by or
+> affiliated with the original author.
 
-## Install
+## Switching from the original Calendar plugin
 
-Manually: download `main.js`, `manifest.json` and `styles.css` from the
-[latest release](https://github.com/aricsangchat/obsidian-calendar-plugin/releases/latest)
-into `<vault>/.obsidian/plugins/calendar/`, replacing the existing files, then
-reload Obsidian.
+This ships under the id `calendar-revived`, because the community plugin list
+requires a unique id. **Your settings carry over automatically** — on first run
+it reads the original plugin's `data.json` once and imports it, then leaves that
+file alone.
+
+Disable the original Calendar plugin before enabling this one; running both puts
+two calendars in your sidebar.
+
+See [CHANGELOG.md](CHANGELOG.md) for what changed, including
+**what is deliberately not claimed to be fixed**.
 
 ---
 

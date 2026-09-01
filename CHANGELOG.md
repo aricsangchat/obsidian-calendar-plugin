@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.6.1 — 2026-09-01
+
+- Plugin id changed from `calendar` to `calendar-revived`, and the name to
+  **Calendar Revived**, as required for the community plugin list (ids must be
+  unique, and `calendar` belongs to the original).
+- **Settings are migrated automatically.** On first run, if this plugin has no
+  settings of its own, it reads the original plugin's
+  `.obsidian/plugins/calendar/data.json` once and imports it. It never writes to
+  that file. Verified end-to-end in a real vault.
+- LICENSE now carries the fork copyright alongside Liam Cain's original, as MIT
+  requires.
+
+Disable the original Calendar plugin before enabling this one.
+
 ## 1.6.0 — 2026-09-01
 
 First release of an unofficial maintenance fork. The upstream plugin's last

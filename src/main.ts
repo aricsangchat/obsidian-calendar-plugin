@@ -1,5 +1,5 @@
 import type { Moment, WeekSpec } from "moment";
-import { App, Plugin, WorkspaceLeaf } from "obsidian";
+import { App, Notice, Plugin, WorkspaceLeaf } from "obsidian";
 
 import { VIEW_TYPE_CALENDAR } from "./constants";
 import { settings } from "./ui/stores";
@@ -114,8 +114,40 @@ export default class CalendarPlugin extends Plugin {
     });
   }
 
+  /**
+   * Settings written by the original `calendar` plugin.
+   *
+   * The community plugin list requires a unique id, so this fork ships as
+   * `calendar-revived` and Obsidian gives it a fresh settings file. Without
+   * this, anyone switching over silently loses their configuration. Read the
+   * old file once, on first run only, and never write to it.
+   */
+  private async loadLegacyOptions(): Promise<Partial<ISettings> | null> {
+    const legacyPath = `${this.app.vault.configDir}/plugins/calendar/data.json`;
+    try {
+      if (!(await this.app.vault.adapter.exists(legacyPath))) {
+        return null;
+      }
+      const parsed = JSON.parse(await this.app.vault.adapter.read(legacyPath));
+      return parsed && typeof parsed === "object" ? parsed : null;
+    } catch (err) {
+      // Never let a malformed or unreadable legacy file block startup.
+      console.warn("[Calendar Revived] could not import previous settings", err);
+      return null;
+    }
+  }
+
   async loadOptions(): Promise<void> {
-    const options = await this.loadData();
+    let options = await this.loadData();
+
+    if (!options) {
+      const legacy = await this.loadLegacyOptions();
+      if (legacy) {
+        options = legacy;
+        new Notice("Calendar: imported your settings from the original plugin.");
+      }
+    }
+
     settings.update((old) => {
       return {
         ...old,
