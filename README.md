@@ -9,6 +9,11 @@
 > take this over or have it taken down at any time. Not endorsed by or
 > affiliated with the original author.
 
+## Reporting a problem
+
+[Open an issue](https://github.com/aricsangchat/obsidian-calendar-plugin/issues) — please include your OS, Obsidian version and display language. Those three fields matter: the crash reported upstream in
+[#417](https://github.com/liamcain/obsidian-calendar-plugin/issues/417) could not be reproduced on macOS with a French locale, and the original reporter was on Windows. If you hit it, you have information I do not.
+
 ## Switching from the original Calendar plugin
 
 This ships under the id `calendar-revived`, because the community plugin list
